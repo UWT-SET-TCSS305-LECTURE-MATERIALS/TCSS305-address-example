@@ -1,108 +1,56 @@
 package edu.uw.tcss.model;
 
-import java.util.Objects;
-
-public class Address implements MailingAddress {
-
-    private static final String NO_SECOND_LINE = "";
-
-    private final String myFirstLine;
-
-    private final String mySecondLine;
-
-    private final String myCity;
-
-
-    private final String myState;
-
-    private final int myZip;
+/**
+ * This Interface defines the contract for all Address objects.
+ * @author Charles Bryan
+ * @version Autumn 2023 1.1
+ */
+public interface Address {
 
     /**
+     * Accessor for this Address object's street number and name.
+     * @return the street number and name
+     */
+    String getFirstLine();
+
+    /**
+     * Accessor for this Address object's optional additional information.
      *
-     * @param theFirstLine
-     * @param theCity
-     * @param theState
-     * @param theZip
-     * @throws IllegalArgumentException when teh arguemtss are ailleg
+     * @return the optional additional information
      */
-    public Address(final String theFirstLine, final String theCity, final String theState, final int theZip) {
-        this(theFirstLine, null, theCity, theState, theZip);
-    }
-
-    public Address(final String theFirstLine, final String theSecondLine, final String theCity, final String theState, final int theZip) {
-        if (Objects.requireNonNull(theFirstLine).isEmpty() ||
-                Objects.requireNonNull(theSecondLine).isEmpty() ||
-                Objects.requireNonNull(theState).isEmpty() ||
-                Objects.requireNonNull(theCity).isEmpty() ||
-                theZip <= 0) {
-            throw new IllegalArgumentException();
-        }
-        myFirstLine = theFirstLine;
-        mySecondLine = theSecondLine;
-        myCity = theCity;
-        myState = theState;
-        myZip = theZip;
-    }
+    String getSecondLine();
 
     /**
-     * @return
+     * Accessor for this Address object's City name.
+     * @return the city name
      */
-    @Override
-    public String getFirstLine() {
-        return myFirstLine;
-    }
+    String getCity();
 
     /**
-     * @return
-     * @throws IllegalStateException when....
+     * Accessor for this Address object's State name.
+     * @return the state name
      */
-    @Override
-    public String getSecondLine() {
-        if (mySecondLine == null) {
-            throw new IllegalStateException("No Second line!");
-        }
-        return mySecondLine;
-    }
-
-
+    String getState();
 
     /**
-     * @return
+     * Accessor for this Address object's Zip Code.
+     * @return the Zip code
      */
-    @Override
-    public String getCity() {
-        return myCity;
-    }
+    int getZip();
 
     /**
-     * @return
+     * Returns true if and only if this Address object has a second line, false
+     * otherwise.
+     *
+     * @return true if and only if this Address object has a second line
      */
-    @Override
-    public String getState() {
-        return myState;
-    }
+    boolean hasSecondLine();
 
     /**
-     * @return
+     * Returns a String representation of thie Address object's mailing label.
+     * @return a String representation of thie Address object's mailing label
      */
-    @Override
-    public int getZip() {
-        return myZip;
-    }
+    String generateLabel();
 
-    /**
-     * @return
-     */
-    @Override
-    public String generateLabel() {
-        return null;
-    }
 
-    /**
-     * @return
-     */
-    @Override
-    public boolean hasSecondLine() {
-        return mySecondLine != null;
-    }
 }

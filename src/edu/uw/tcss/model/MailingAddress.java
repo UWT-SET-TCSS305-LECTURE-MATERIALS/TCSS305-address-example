@@ -56,7 +56,7 @@ public class MailingAddress implements Address {
                           final String theCity,
                           final String theState,
                           final int theZip) {
-        this(theFirstLine, null, theCity, theState, theZip);
+        this(theFirstLine, NO_SECOND_LINE, theCity, theState, theZip);
     }
 
     /**
@@ -160,7 +160,7 @@ public class MailingAddress implements Address {
         result.append(myCity);
         result.append(", ");
         result.append(myState);
-        result.append(" ");
+        result.append(' ');
         result.append(myZip);
         return result.toString();
     }
@@ -175,4 +175,60 @@ public class MailingAddress implements Address {
     public boolean hasSecondLine() {
         return mySecondLine != null;
     }
+
+    @Override
+    public boolean equals(final Object theOther) {
+
+        boolean result = false;
+
+        if (theOther != null && theOther.getClass().equals(this.getClass())) {
+            final MailingAddress otherAsMailingAddress = (MailingAddress) theOther;
+            result = myFirstLine.equals(otherAsMailingAddress.myFirstLine)
+                    && mySecondLine.equals(otherAsMailingAddress.mySecondLine)
+                    && myCity.equals(otherAsMailingAddress.myCity)
+                    && myState.equals(otherAsMailingAddress.myState)
+                    && myZip == otherAsMailingAddress.myZip;
+        }
+
+        return result;
+    }
+
+    /**
+     * Returns a String representation of this object. The format is as follows:
+     * <br />When calls to this Address object's hasSecondLine() return true,
+     * the result of this method will follow this format:
+     * <br />
+     * [First Line][newline character]<br />
+     * [Second Line][newline character]<br />
+     * [City], [State] [Zip]<br />
+     * <br />When calls to this Address object's hasSecondLine() return false,
+     * the result of this method will follow this format:
+     * <br />
+     * [First Line][newline character]<br />
+     * [City], [State] [Zip]<br />
+     * @return a String representation of the object
+     */
+    @Override
+    public String toString() {
+        return generateLabel();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(myFirstLine, mySecondLine, myCity, myState, myZip);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

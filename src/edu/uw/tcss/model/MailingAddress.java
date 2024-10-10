@@ -56,7 +56,7 @@ public class MailingAddress implements Address {
                           final String theCity,
                           final String theState,
                           final int theZip) {
-        this(theFirstLine, null, theCity, theState, theZip);
+        this(theFirstLine, NO_SECOND_LINE, theCity, theState, theZip);
     }
 
     /**

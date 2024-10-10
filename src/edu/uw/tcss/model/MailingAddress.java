@@ -3,9 +3,9 @@ package edu.uw.tcss.model;
 import java.util.Objects;
 
 /**
- * THis class deemonstrates concepts related to class design.
+ * This class deemonstrates concepts related to class design.
  * @author Charles Bryan
- * @version Autumn 2023 1.1
+ * @version Autumn 2024 1.2
  */
 public class MailingAddress implements Address {
 
@@ -165,12 +165,7 @@ public class MailingAddress implements Address {
         return result.toString();
     }
 
-    /**
-     * Returns true if and only if this Address object has a second line, false
-     * otherwise.
-     *
-     * @return true if and only if this Address object has a second line
-     */
+
     @Override
     public boolean hasSecondLine() {
         return mySecondLine != null;
